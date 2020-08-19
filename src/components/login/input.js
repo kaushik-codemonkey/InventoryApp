@@ -7,7 +7,13 @@ export default function Input({
   placeholder,
   required,
   autofocus,
+  name,
+  setCred,
 }) {
+  function onChange(e) {
+    const { name, value } = e.target;
+    setCred((prev) => ({ ...prev, [name]: value }));
+  }
   return (
     <div>
       <label for={labelfor} class="sr-only">
@@ -20,6 +26,8 @@ export default function Input({
         placeholder={placeholder}
         required={required}
         autofocus={autofocus}
+        name={name}
+        onChange={(e) => onChange(e)}
       />
     </div>
   );

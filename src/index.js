@@ -5,9 +5,11 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import store from "./container/redux";
+import { ToastContainer } from "react-toastify";
 
 ReactDOM.render(
   <Provider store={store}>
+    <ToastContainer />
     <React.StrictMode>
       <App />
     </React.StrictMode>

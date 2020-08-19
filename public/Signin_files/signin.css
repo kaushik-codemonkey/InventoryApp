@@ -15,7 +15,7 @@ body {
   justify-content: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: grey;
+  background-image: url(./inventory-management.jpeg);
 }
 
 .form-signin {
