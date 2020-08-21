@@ -4,6 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import { LoginApi } from "../../container/api/auth";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
+import { logoUrl } from "../logo";
 export default function Login() {
   const [cred, setCred] = useState({ password: "", email: "" });
   const [res, setRes] = useState({});
@@ -43,7 +44,7 @@ export default function Login() {
   if (res && res.statusText === "OK") return <Redirect to="/home" />;
   return (
     <form class="form-signin">
-      <img class="mb-4" src="logo128.png" alt="" width="100%" height="72" />
+      <img class="mb-4" src={logoUrl} alt="" width="100%" height="72" />
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <Input
         name="email"

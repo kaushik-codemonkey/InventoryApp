@@ -5,6 +5,7 @@ import { RegisterApi } from "../../container/api/auth";
 import { toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+import { logoUrl } from "../logo";
 export default function RegisterUser() {
   const [cred, setCred] = useState({ name: "", email: "", password: " " });
   const [res, setRes] = useState({});
@@ -40,7 +41,7 @@ export default function RegisterUser() {
 
   return (
     <form class="form-signin">
-      <img class="mb-4" src="logo128.png" alt="" width="100%" height="72" />
+      <img class="mb-4" src={logoUrl} alt="" width="100%" height="72" />
       <h1 class="h3 mb-3 font-weight-normal">Registration</h1>
 
       <Input

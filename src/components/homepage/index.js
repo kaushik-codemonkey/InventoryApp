@@ -26,14 +26,17 @@ export default function InventoryHome() {
         I Know you are eager to see this page, but, Page is under Construction
         :C
       </h1>
-      <button
-        onClick={(e) => {
-          e.preventDefault();
-          clickHandle();
-        }}
-      >
-        Logout
-      </button>
+      <div style={{ maxWidth: "50%", marginLeft: "24%" }}>
+        <button
+          class="btn btn-lg btn-primary btn-block"
+          onClick={(e) => {
+            e.preventDefault();
+            clickHandle();
+          }}
+        >
+          Logout
+        </button>
+      </div>
     </div>
   );
 }
