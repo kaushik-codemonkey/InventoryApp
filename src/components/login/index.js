@@ -1,14 +1,46 @@
 import React, { useState, useEffect } from "react";
 import Input from "./input";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { LoginApi } from "../../container/api/auth";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
 export default function Login() {
   const [cred, setCred] = useState({ password: "", email: "" });
-  useEffect(() => {
-    console.log(cred);
-  }, [cred]);
+  const [res, setRes] = useState({});
+
+  const dispatch = useDispatch();
+  useEffect(() => {}, [cred]);
   function submitHandle() {
-    console.log(cred);
+    LoginApi(cred, setRes);
   }
+  useEffect(() => {
+    console.log(res);
+    if (res.statusText == "OK") {
+      toast.success("You have been logged in!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      localStorage.setItem("auth_token", res.data.token);
+      localStorage.setItem("uid", res.data.id);
+    }
+    if (res.data)
+      toast.error(res.data, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+  }, [res]);
+
+  if (res && res.statusText === "OK") return <Redirect to="/home" />;
   return (
     <form class="form-signin">
       <img class="mb-4" src="logo128.png" alt="" width="100%" height="72" />

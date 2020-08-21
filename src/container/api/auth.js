@@ -1,6 +1,7 @@
 import axios from "axios";
 import apiAddress from "../apiAddr";
 
+// RegisterAPI
 function RegisterApi({ name, email, password }, setRes) {
   axios({
     method: "POST",
@@ -18,14 +19,57 @@ function RegisterApi({ name, email, password }, setRes) {
   })
     .then(function (response) {
       // handle success
-      console.log(response);
       setRes(response);
     })
     .catch(function (error) {
       // handle error
-      console.log(error);
       setRes(error.response);
     });
 }
-
-export { RegisterApi };
+// LoginAPI
+function LoginApi({ email, password }, setRes) {
+  axios({
+    method: "POST",
+    url: `${apiAddress}/user/login`,
+    headers: {
+      Accept: "application/json",
+      "Content-type": "application/json",
+    },
+    timeout: 5000,
+    data: {
+      email,
+      password,
+    },
+  })
+    .then(function (response) {
+      // handle success
+      setRes(response);
+    })
+    .catch(function (error) {
+      // handle error
+      setRes(error.response);
+    });
+}
+// Signout API
+function LogoutApi(token, setRes) {
+  axios({
+    method: "POST",
+    url: `${apiAddress}/user/logout`,
+    headers: {
+      Accept: "application/json",
+      "Content-type": "application/json",
+      auth_token: token,
+    },
+    timeout: 5000,
+    data: {},
+  })
+    .then(function (response) {
+      // handle success
+      setRes(response);
+    })
+    .catch(function (error) {
+      // handle error
+      setRes(error.response);
+    });
+}
+export { RegisterApi, LoginApi, LogoutApi };

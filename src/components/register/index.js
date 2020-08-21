@@ -9,13 +9,10 @@ export default function RegisterUser() {
   const [cred, setCred] = useState({ name: "", email: "", password: " " });
   const [res, setRes] = useState({});
   const submitHandle = () => {
-    console.log(cred);
     RegisterApi(cred, setRes);
   };
 
   useEffect(() => {
-    console.log(res.data);
-    console.log(res);
     if (res.statusText == "OK") {
       toast.success("Registration successful! You can now login", {
         position: "top-right",
